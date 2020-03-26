@@ -49,10 +49,16 @@ class Airplane:
 
 
 class Employee:
-    def __init__(self, name, surname):
-        self.name = name
-        self.surname = surname
-
+     def __init__(self, name, surname, age, salary, experience):
+        self.experience = experience
+        if self.experience >=1:
+            self.name = name
+            self.surname = surname
+            self.salary = salary
+            self.age = age
+            self.get_work = True
+        else:
+            self.get_work = False
 
 class Captain(Employee):
     def __init__(self, name, surname,age,salary,experience):
@@ -65,7 +71,6 @@ class Captain(Employee):
             self.get_work = True
         else:
             self.get_work = False
-        super().__init__(name, surname)
 
 class Passenger:
     def __init__(self, name, surname, ticket, earnings_company):
@@ -116,11 +121,19 @@ def main():
     #  Капітан
     captain = Captain('John','Sina',45,20000,10)
     if captain.get_work == True:
-         print(f'Captian:{captain.name} was accept ')
+         print(f'Captian:{captain.name, captain.age} was accept ')
          flights_company.pay_salary(captain.salary)
     else:
         print("Captian don't have enough experience")
     #  Капітан
+    #  Персонал
+    employee = Employee('Maria', 'Diana', 21, 10000, 2)
+    if employee.get_work == True:
+        print(f'Employee:{employee.name, employee.age} was accept')
+        flights_company.pay_salary(employee.salary)
+    else: 
+        print("{employee.name} don't have enough experience")   
+    #  Персонал
     #  Багаж
     luggage = Luggage(7,55,40,20)
     if luggage.weight_is_possible == True and luggage.width_is_possible == True and luggage.height_is_possible == True and luggage.depth_is_possible == True:
