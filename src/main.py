@@ -75,6 +75,7 @@ class Airport:
 def main():
     flights_company = AirlineCompany("TheXStudiesFlights")
     print(flights_company)
+    captain = Captain('John','Sina')
     airbus_planes = [
         Airplane("Airbus320", "passenger", 1000000, 2000+i) for i in range(20)]
     flights_company.add_funds(20000000)
@@ -85,7 +86,7 @@ def main():
         first_plane.relocate(kiev_superairport)
         airbus_planes.remove(first_plane)
 
-
+    print(captain.name)
     print(flights_company.fleet)
     print(airbus_planes)
 
