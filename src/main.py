@@ -11,6 +11,9 @@ class AirlineCompany:
     def pay_salary(self, money):  # виплачує зарплату
         self.balance -= money
 
+    def ticket_cost(self, money):  # Ціна за білет на літак
+        self.balance += money
+
     def add_funds(self, amount):
         self.balance += amount
 
@@ -63,11 +66,17 @@ class Captain(Employee):
         else:
             self.get_work = False
         super().__init__(name, surname)
-class Passenger:
-    def __init__(self, name, surname):
-        self.name = name
-        self.surname = surname
 
+class Passenger:
+    def __init__(self, name, surname, ticket, earnings_company, go_to_airplane):
+        self.ticket = ticket
+        if self.ticket >=1:
+            self.name = name
+            self.surname = surname
+            self.earnings_company = earnings_company
+            self.go_to_airplane = True
+        else:
+            self.go_to_airplane = False
 
 class Luggage:
     def __init__(self,weight,width, height,depth):
@@ -115,7 +124,15 @@ def main():
         print("luggage is  suitable")
     else:
         print("luggage is not suitable")
-     # Багаж
+    # Багаж
+    # Пасажир
+    passenger = ('Ricardo','Milas', 1)
+    if passenger.go_to_airplane == True:
+        print(f'Passenger:{passenger.name, passenger.surname} went on board')
+        flights_company.ticket_cost(passenger.earnings_company) 
+    else:
+        print("The passenger has no ticket")
+    # Пасажир
     airbus_planes = [
         Airplane("Airbus320", "passenger", 1000000, 2000+i) for i in range(20)]
     flights_company.add_funds(20000000)
@@ -131,4 +148,3 @@ def main():
     print(airbus_planes)
 
 main()
-
