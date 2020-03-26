@@ -68,9 +68,9 @@ class Captain(Employee):
         super().__init__(name, surname)
 
 class Passenger:
-    def __init__(self, name, surname, ticket, earnings_company, go_to_airplane):
+    def __init__(self, name, surname, ticket, earnings_company):
         self.ticket = ticket
-        if self.ticket >=1:
+        if self.ticket <=1:
             self.name = name
             self.surname = surname
             self.earnings_company = earnings_company
@@ -126,7 +126,7 @@ def main():
         print("luggage is not suitable")
     # Багаж
     # Пасажир
-    passenger = ('Ricardo','Milas', 1)
+    passenger = Passenger('Ricardo','Milas', 1,10000)
     if passenger.go_to_airplane == True:
         print(f'Passenger:{passenger.name, passenger.surname} went on board')
         flights_company.ticket_cost(passenger.earnings_company) 
