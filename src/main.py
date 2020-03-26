@@ -8,6 +8,9 @@ class AirlineCompany:
         self.balance = 0
         self.fleet = []
 
+    def pay_salary(self, money):  # виплачує зарплату
+        self.balance -= money
+
     def add_funds(self, amount):
         self.balance += amount
 
@@ -49,10 +52,17 @@ class Employee:
 
 
 class Captain(Employee):
-    def __init__(self, name, surname):
+    def __init__(self, name, surname,age,salary,experience):
+        self.experience = experience
+        if self.experience >=10:
+            self.name = name
+            self.surname = surname
+            self.salary = salary
+            self.age = age
+            self.get_work = True
+        else:
+            self.get_work = False
         super().__init__(name, surname)
-
-
 class Passenger:
     def __init__(self, name, surname):
         self.name = name
@@ -75,7 +85,14 @@ class Airport:
 def main():
     flights_company = AirlineCompany("TheXStudiesFlights")
     print(flights_company)
-    captain = Captain('John','Sina')
+    #  Капітан
+    captain = Captain('John','Sina',45,20000,10)
+    if captain.get_work == True:
+         print(f'Captian:{captain.name} was accept ')
+         flights_company.pay_salary(captain.salary)
+    else:
+        print("Captian don't have enough experience")
+    #  Капітан
     airbus_planes = [
         Airplane("Airbus320", "passenger", 1000000, 2000+i) for i in range(20)]
     flights_company.add_funds(20000000)
@@ -85,7 +102,7 @@ def main():
         flights_company.buy_airplane(first_plane)
         first_plane.relocate(kiev_superairport)
         airbus_planes.remove(first_plane)
-
+    print(flights_company.balance)
     print(captain.name)
     print(flights_company.fleet)
     print(airbus_planes)
