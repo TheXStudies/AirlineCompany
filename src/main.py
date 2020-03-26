@@ -68,7 +68,7 @@ class Captain(Employee):
         super().__init__(name, surname)
 
 class Passenger:
-    def __init__(self, name, surname, ticket, earnings_company, go_to_airplane):
+    def __init__(self, name, surname, ticket, earnings_company):
         self.ticket = ticket
         if self.ticket >=1:
             self.name = name
@@ -101,11 +101,14 @@ class Luggage:
         else:
             self.weight_is_possible = False
 
-
 class Airport:
-    def __init__(self, name,):
+    def __init__(self, name, strip_size, opening_date, altitude):
         self.name = name
-
+        self.strip_size = strip_size
+        self.opening_date = opening_date
+        self.altitude = altitude # висота над рівнем моря
+        self.dispatch = True
+        self.landing = True
 
 def main():
     flights_company = AirlineCompany("TheXStudiesFlights")
@@ -118,7 +121,7 @@ def main():
     else:
         print("Captian don't have enough experience")
     #  Капітан
-    # Багаж
+    #  Багаж
     luggage = Luggage(7,55,40,20)
     if luggage.weight_is_possible == True and luggage.width_is_possible == True and luggage.height_is_possible == True and luggage.depth_is_possible == True:
         print("luggage is  suitable")
@@ -126,7 +129,7 @@ def main():
         print("luggage is not suitable")
     # Багаж
     # Пасажир
-    passenger = ('Ricardo','Milas', 1)
+    passenger = Passenger('Ricardo','Milas', 1, 2000)
     if passenger.go_to_airplane == True:
         print(f'Passenger:{passenger.name, passenger.surname} went on board')
         flights_company.ticket_cost(passenger.earnings_company) 
@@ -136,7 +139,18 @@ def main():
     airbus_planes = [
         Airplane("Airbus320", "passenger", 1000000, 2000+i) for i in range(20)]
     flights_company.add_funds(20000000)
-    kiev_superairport = Airport("Kiev SuperAirport")
+    kiev_superairport = Airport("Kiev SuperAirport", 4, 1965, 130)
+    # Аеропорт
+    if kiev_superairport.dispatch == True:
+        print('The plane left')
+    else:
+        print("The plane didn't left")
+
+    if kiev_superairport.landing == True:
+        print('The plane landed')
+    else:
+        print("The plane didn't landed")
+    # Аеропорт
     for i in range(15):
         first_plane = airbus_planes[0]
         flights_company.buy_airplane(first_plane)
