@@ -70,15 +70,31 @@ class Passenger:
 
 
 class Luggage:
-    def __init__(self, width, height, depth, color):
+    def __init__(self,weight,width, height,depth):
+        self.weight = weight
         self.width = width
         self.height = height
         self.depth = depth
-        self.color = color
+        if self.weight >=7 and self.weight <=12:
+            self.weight_is_possible = True
+            if self.width > 0 and self.width <= 55:
+                self.width_is_possible = True
+                if self.height > 0 and self.height <= 40:
+                    self.height_is_possible = True
+                    if self.depth > 0 and self.depth <= 20:
+                        self.depth_is_possible = True
+                    else:
+                        self.depth_is_possible = False
+                else:
+                    self.height_is_possible = False
+            else:
+                self.width_is_possible = False
+        else:
+            self.weight_is_possible = False
 
 
 class Airport:
-    def __init__(self, name):
+    def __init__(self, name,):
         self.name = name
 
 
@@ -93,6 +109,13 @@ def main():
     else:
         print("Captian don't have enough experience")
     #  Капітан
+    # Багаж
+    luggage = Luggage(7,55,40,20)
+    if luggage.weight_is_possible == True and luggage.width_is_possible == True and luggage.height_is_possible == True and luggage.depth_is_possible == True:
+        print("luggage is  suitable")
+    else:
+        print("luggage is not suitable")
+     # Багаж
     airbus_planes = [
         Airplane("Airbus320", "passenger", 1000000, 2000+i) for i in range(20)]
     flights_company.add_funds(20000000)
