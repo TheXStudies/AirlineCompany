@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+
+</head>
+<body>
+<h1>Airline Company</h1>
+{% for company in companies %}
+    <h2><a href="/companies/{{ company.id }}/">{{ company.name }}</a></h2>
+    <span>Balance to date: {{ company.balance }}</span>
+{% endfor %}
+</body>
+</html>
