@@ -58,22 +58,33 @@ class Airplane(models.Model):
         return f" {self.name} ({self.produced})"
 
 
-class Airport(models.Model):
-        name = models.CharField(max_length=32)
-        strip_size = models.IntegerField(help_text="Strip's size" )
-        opening_date = models.DateField()
-        altitude = models.IntegerField(help_text="Airport's altitude", max_length=5)   # висота над рівнем моря
-        # dispatch = True
-        # landing = True
-
-        def __str__(self):
-            return f" {self.name}"
-
 class Captain(models.Model):
                 experience = models.IntegerField(help_text='Must be >10 years')
                 name = models.CharField(max_length=32)
                 surname = models.CharField(max_length=32)
                 salary = models.DecimalField(max_digits=12, decimal_places=2)
                 age = models.IntegerField()
+                airline_company = models.ForeignKey(
+                    AirlineCompany, null=True, blank=True,
+                    on_delete=models.SET_NULL,
+                )
 
-                
+
+class Airport(models.Model):
+    name = models.CharField(max_length=32)
+    strip_size = models.IntegerField(help_text="Strip's size" )
+    opening_date = models.DateField()
+    altitude = models.IntegerField(help_text="Airport's altitude", max_length=5)   # висота над рівнем моря
+    airline_company = models.ForeignKey(
+        AirlineCompany, null=True, blank=True,
+        on_delete=models.SET_NULL,
+    )
+    captain = models.ForeignKey(
+        Captain, null=True, blank=True,
+        on_delete=models.SET_NULL,
+    )
+
+    def __str__(self):
+        return f" {self.name}"
+    # dispatch = True
+    # landing = True
