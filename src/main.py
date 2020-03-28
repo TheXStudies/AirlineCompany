@@ -26,6 +26,7 @@ class Captain(Employee):
         else:
             self.get_work = False
 
+
 class Passenger:
     def __init__(self, name, surname, ticket, earnings_company):
         self.ticket = ticket
