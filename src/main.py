@@ -2,30 +2,6 @@ class NotEnoughFunds(Exception):
     pass
 
 
-
-
-class Airplane:
-    TYPES = {'passenger', 'freight'}
-
-    def __init__(self, name, plane_type, cost, prod_year):
-        self.name = name
-        self.plane_type = plane_type
-        self.prod_year = prod_year
-        self.cost = cost
-        self.speed = 0
-        self.airline_owner = None
-        self.airport_base = None
-
-    def relocate(self, airport):
-        self.airport_base = airport
-
-    def __str__(self):
-        return f" {self.name} {self.prod_year}"
-
-    def __repr__(self):
-        return f" {self.name} ({self.prod_year})"
-
-
 class Employee:
      def __init__(self, name, surname, age, salary, experience):
         self.experience = experience
@@ -109,8 +85,8 @@ def main():
     if employee.get_work == True:
         print(f'Employee:{employee.name, employee.age} was accept')
         flights_company.pay_salary(employee.salary)
-    else: 
-        print("{employee.name} don't have enough experience")   
+    else:
+        print("{employee.name} don't have enough experience")
     #  Персонал
     #  Багаж
     luggage = Luggage(7,55,40,20)
@@ -123,7 +99,7 @@ def main():
     passenger = Passenger('Ricardo','Milas', 1, 2000)
     if passenger.go_to_airplane == True:
         print(f'Passenger:{passenger.name, passenger.surname} went on board')
-        flights_company.ticket_cost(passenger.earnings_company) 
+        flights_company.ticket_cost(passenger.earnings_company)
     else:
         print("The passenger has no ticket")
     # Пасажир

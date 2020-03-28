@@ -28,3 +28,31 @@ class AirlineCompany(models.Model):
     #         print(f"{self.name} bought an airplane {airplane}")
     #     else:
     #         raise NotEnoughFunds()
+
+
+class Airplane(models.Model):
+    TYPES = (
+        ('passng', 'Passenger'),
+        ('freight', 'Freight'),
+    )
+
+    name = models.CharField(max_length=32)
+    plane_type = models.CharField(max_length=7, choices=TYPES)
+    cost = models.DecimalField(max_digits=12, decimal_places=2)
+    produced = models.DateField()
+    airline_owner = models.ForeignKey(
+        AirlineCompany, null=True, blank=True,
+        on_delete=models.SET_NULL,
+    )
+
+    # TODO: add Airport
+    # airport_base = models.ForeignKey(Airport)
+
+    # TODO: calculatable property
+    # speed
+
+    def __str__(self):
+        return f" {self.name} {self.produced}"
+
+    def __repr__(self):
+        return f" {self.name} ({self.produced})"
