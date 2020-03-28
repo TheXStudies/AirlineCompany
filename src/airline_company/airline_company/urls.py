@@ -22,5 +22,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('companies/<int:pk>/', CompanyView.as_view(), name='company-detail'),
-    path('airplaned/<int:pk>/', CompanyView.as_view(), name='company-detail'),
 ]
