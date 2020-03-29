@@ -86,7 +86,7 @@ class Airport(models.Model):
     name = models.CharField(max_length=32)
     strip_size = models.IntegerField(help_text="Strip's size" )
     opening_date = models.DateField()
-    altitude = models.IntegerField(help_text="Airport's altitude", max_length=5)   # висота над рівнем моря
+    altitude = models.IntegerField(help_text="Airport's altitude")   # висота над рівнем моря
     airline_company = models.ForeignKey(
         AirlineCompany, null=True, blank=True,
         on_delete=models.SET_NULL,
