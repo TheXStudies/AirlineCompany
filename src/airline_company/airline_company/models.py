@@ -70,6 +70,18 @@ class Captain(models.Model):
                 )
 
 
+class Employee(models.Model):
+    experience = models.IntegerField(help_text='Must be >1 years')
+    name = models.CharField(max_length=32)
+    surname = models.CharField(max_length=32)
+    salary = models.DecimalField(max_digits=12, decimal_places=2)
+    age = models.IntegerField()
+    airline_company = models.ForeignKey(
+        AirlineCompany, null=True, blank=True,
+        on_delete=models.SET_NULL,
+    )
+
+
 class Airport(models.Model):
     name = models.CharField(max_length=32)
     strip_size = models.IntegerField(help_text="Strip's size" )
