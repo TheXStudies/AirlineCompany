@@ -1,1 +1,1 @@
-web: gunicorn --chdir src airlinecompany.airlinecompany.asgi --log-file -
+web: gunicorn --chdir src/airlinecompany airlinecompany.asgi --log-file -
