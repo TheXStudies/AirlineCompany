@@ -1,0 +1,1 @@
+web: gunicorn --chdir src/airline_company airline_company.wsgi --log-file -

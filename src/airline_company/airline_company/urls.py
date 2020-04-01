@@ -15,6 +15,8 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from django.conf.urls.static import static
+from django.conf import settings
 
 from airline_company.views import index, CompanyView
 
@@ -22,4 +24,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('companies/<int:pk>/', CompanyView.as_view(), name='company-detail'),
-]
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
